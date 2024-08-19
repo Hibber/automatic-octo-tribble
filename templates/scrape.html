@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrape Information</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Scrape Information from a Website</h1>
+        <form method="POST">
+            <input type="text" name="url" placeholder="Enter the URL" required>
+            <input type="text" name="search_query" placeholder="Enter the HTML tag or CSS selector to search" required>
+            <button type="submit">Scrape</button>
+        </form>
+        <p><a href="{{ url_for('index') }}">Go Back</a></p>
+    </div>
+</body>
+</html>

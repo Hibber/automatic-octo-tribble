@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #007bff;
+            padding: 10px;
+            color: white;
+            text-align: center;
+        }
+        .navbar a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            text-align: center;
+            color: #007bff;
+        }
+        .scrape-form {
+            margin-bottom: 30px;
+        }
+        .scrape-form input[type="text"] {
+            width: calc(50% - 20px);
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .scrape-form button {
+            padding: 10px 15px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .scrape-form button:hover {
+            background-color: #0056b3;
+        }
+        .scrape-results ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .scrape-results ul li {
+            background-color: #f4f4f4;
+            padding: 10px;
+            margin-bottom: 5px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .scrape-results ul li form {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">Dashboard</a>
+        <a href="/logs">Logs</a>
+        <a href="/logout">Logout</a>
+    </div>
+    <div class="container">
+        <h1>Dashboard</h1>
+
+        <!-- Scraping Form -->
+        <div class="scrape-form">
+            <h2>Scrape Information</h2>
+            <form method="POST">
+                <input type="text" name="url" placeholder="Enter the URL" required>
+                <input type="text" name="search_query" placeholder="Enter HTML tag or CSS selector" required>
+                <button type="submit">Scrape</button>
+            </form>
+        </div>
+
+        <!-- Display Scrape Results -->
+        {% if results %}
+        <div class="scrape-results">
+            <h2>Scrape Results for {{ url }}</h2>
+            <ul>
+                {% for result in results %}
+                <li>
+                    {{ result }}
+                    <form method="POST" action="{{ url_for('download') }}">
+                        <input type="hidden" name="download_url" value="{{ result }}">
+                        <button type="submit">Download</button>
+                    </form>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
