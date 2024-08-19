@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrape Results</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Scrape Results for {{ url }}</h1>
+        <h3>Search Query: {{ search_query }}</h3>
+        <ul>
+            {% for result in results %}
+            <li>{{ result }}</li>
+            {% endfor %}
+        </ul>
+        <p><a href="{{ url_for('scrape') }}">Scrape Another URL</a></p>
+        <p><a href="{{ url_for('index') }}">Go Back</a></p>
+    </div>
+</body>
+</html>
