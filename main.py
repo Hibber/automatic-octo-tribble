@@ -349,7 +349,7 @@ def view_logs():
 def main():
     init_db()
     # start_scheduler()  # Start the scheduled job for downloading videos
-    app.run(debug=True, use_reloader=False)  # Start Flask app
+    app.run(use_reloader=False)  # Start Flask app
 
 
 if __name__ == "__main__":
